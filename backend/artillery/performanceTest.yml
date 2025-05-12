@@ -1,0 +1,46 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+  payload:
+    path: "./users.csv"
+    fields:
+      - firstName
+      - lastName
+      - email
+      - password
+      - role
+  defaults:
+    headers:
+      Content-Type: application/json
+
+scenarios:
+  - name: "Register and Login User with Role Routing"
+    flow:
+      - post:
+          url: "/auth/register"
+          json:
+            firstName: "{{ firstName }}"
+            lastName: "{{ lastName }}"
+            email: "{{ email }}"
+            password: "{{ password }}"
+            role: "{{ role }}"
+          expect:
+            - statusCode: 201
+      - post:
+          url: "/auth/login"
+          json:
+            email: "{{ email }}"
+            password: "{{ password }}"
+          capture:
+            - json: token
+              as: authToken
+          expect:
+            - statusCode: 201
+      - get:
+          url: "/user/{{ role }}Dashboard"
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+          expect:
+            - statusCode: 200

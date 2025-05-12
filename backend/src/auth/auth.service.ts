@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { UserService } from '../user/user.service'; // Import UserService to access user-related methods
@@ -25,7 +25,7 @@ export class AuthService {
       return user; // Return user if password matches
     }
 
-    return response.status(401).json({ message: 'Invalid credentials' }); // Return 401 if credentials are invalid
+    throw new UnauthorizedException('Invalid credentials'); // Throw an error if credentials are invalid
   }
 
   async login(user: any) {
