@@ -5,7 +5,7 @@ import { loginUser } from '../../services/api'; // Adjust the import path as nec
 import './auth.css';
 
 const Auth: React.FC = () => {
-    const [isLoginActive, setIsLoginActive] = useState(true);
+    const [isLoginActive, setIsLoginActive] = useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',

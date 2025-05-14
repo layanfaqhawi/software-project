@@ -208,3 +208,63 @@ select {
     border-radius: 5px;
     font-size: 15px;
 }
+
+@media (max-width: 768px) {
+    .container {
+        min-height: 600px;
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        position: relative;
+    }
+
+    .form-container {
+        position: relative;
+        width: 100%;
+        transform: none !important;
+    }
+
+    .sign-in-container {
+        display: block;
+    }
+
+    .sign-up-container {
+        display: none;
+    }
+
+    .container.right-panel-active .sign-in-container {
+        display: none;
+    }
+
+    .container.right-panel-active .sign-up-container {
+        display: block;
+    }
+
+    .overlay-container {
+        display: none;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    select,
+    input {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
